@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class Util {
 
+
         public static String getResponseFromHttpUrl(URL url) throws IOException {
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
