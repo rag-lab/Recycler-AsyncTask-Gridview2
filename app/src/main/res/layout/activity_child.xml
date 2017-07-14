@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.seila.myapplication.childActivity">
+
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="385dp"
+        android:layout_height="92dp"
+        android:text="Chappie"
+        android:textSize="24sp"
+        android:layout_below="@+id/thumb"
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/thumb"/>
+
+    <TextView
+        android:id="@+id/ano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2015"
+        android:layout_below="@+id/duracao"
+        android:layout_alignLeft="@+id/duracao"
+        android:layout_alignStart="@+id/duracao"
+        tools:layout_editor_absoluteY="169dp"
+        tools:layout_editor_absoluteX="263dp" />
+
+    <TextView
+        android:id="@+id/duracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200min"
+        android:layout_below="@+id/titulo"
+        android:layout_toRightOf="@+id/titulo"
+        android:layout_toEndOf="@+id/titulo"
+        android:layout_marginStart="26dp"
+        tools:layout_editor_absoluteY="126dp"
+        tools:layout_editor_absoluteX="263dp" />
+
+    <TextView
+        android:id="@+id/sinopse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Caio é mais um jet setter a entrar no mundo do conteúdo independente visando expor suas credenciais sociais e assim conseguir entrar em jogadas ainda mais sofisticadas.... - Veja mais em https://entretenimento.uol.com.br/colunas/chico-barney/2017/07/12/por-que-noticia-de-que-cleo-pires-curte-algemas-e-sexo-a-tres-e-importante.htm?cmpid=copiaecola"
+
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/thumb"
+        android:layout_toEndOf="@+id/thumb"
+        tools:layout_editor_absoluteY="409dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</android.support.constraint.ConstraintLayout>

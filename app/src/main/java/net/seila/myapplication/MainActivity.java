@@ -1,6 +1,8 @@
 package net.seila.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +11,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -66,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager.setSpanCount(2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-
-
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         //recyclerView.setLayoutManager(layoutManager);
 
@@ -118,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             recyclerView.setAdapter(recyclerAdapter);
-
             //Log.v("RAG",s.toString());
         }
 
@@ -134,13 +136,14 @@ public class MainActivity extends AppCompatActivity {
             URL urlSearch = params[0];
             String aa="";
 
-
             try {
 
                 aa = Util.getResponseFromHttpUrl(urlSearch);
 
                 JSONObject jsonObject = new JSONObject(aa);
                 JSONArray array = jsonObject.getJSONArray("results");
+
+                listItems.clear();
 
                 for(int i = 0;i<array.length();i++)
                 {
@@ -150,16 +153,28 @@ public class MainActivity extends AppCompatActivity {
                     String poster_path = getString(R.string.base_url_poster);
                     poster_path += o.getString("poster_path");
 
-                    ListItem item = new ListItem(o.getString("original_title"), poster_path);
+                    String titulo = o.getString("original_title");
+                    String ano = o.getString("release_date");
+                    String duracao = o.getString("vote_count");
+                    String sinopse = o.getString("overview");
+
+                    ListItem item = new ListItem(titulo,
+                            poster_path,
+                            ano,
+                            duracao,
+                            sinopse);
 
                     listItems.add(item);
-                    Log.v("RAG", item.getTitulo() + "--" + poster_path);
+
+                    //Log.v("RAG",titulo);
+                    //Log.v("RAG", poster_path);
+                    //Log.v("RAG",ano);
+                    //Log.v("RAG",duracao);
+                    //Log.v("RAG",sinopse);
+
                 }
 
-
                 recyclerAdapter = new RecyclerAdapter(listItems, getApplicationContext());
-
-
 
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -171,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
             return aa;
 
         }
+
     }
 
 
@@ -179,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data");
         progressDialog.show();
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 urlJSON,
@@ -200,10 +215,24 @@ public class MainActivity extends AppCompatActivity {
                                 String poster_path = getString(R.string.base_url_poster);
                                 poster_path += o.getString("poster_path");
 
-                                ListItem item = new ListItem(o.getString("original_title"), poster_path);
+                                String titulo = o.getString("original_title");
+                                String ano = o.getString("release_date");
+                                String duracao = o.getString("vote_count");
+                                String sinopse = o.getString("overview");
+
+                                ListItem item = new ListItem(titulo,
+                                        poster_path,
+                                        ano,
+                                        duracao,
+                                        sinopse);
 
                                 listItems.add(item);
-                                Log.v("RAG", item.getTitulo() + "--" + poster_path);
+
+                                Log.v("RAG",titulo);
+                                Log.v("RAG", poster_path);
+                                Log.v("RAG",ano);
+                                Log.v("RAG",duracao);
+                                Log.v("RAG",sinopse);
                             }
 
                             recyclerAdapter = new RecyclerAdapter(listItems, getApplicationContext());
@@ -227,8 +256,53 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int menuId = item.getItemId();
+        Context ctx = MainActivity.this;
+
+        if(menuId==R.id.menuit1){
+
+            urlJSON = String.format( getString(R.string.base_url_popular),getString(R.string.APIKEY));
+
+            //Context ctx2 = MainActivity.this;
+            //Intent intent = new Intent(ctx2, childActivity.class);
+
+            //myIntent.putExtra("firstName", "Your First Name Here");
+            //myIntent.putExtra("lastName", "Your Last Name Here");
+
+            //intent.putExtra(Intent.EXTRA_TEXT, "banana");
+            //startActivity(intent);
+
+            //String msg = "asdsad";
+            //Toast.makeText(ctx,msg, Toast.LENGTH_LONG).show();
+
+        }else{
+
+            urlJSON = String.format( getString(R.string.base_url_toprated),getString(R.string.APIKEY));
+            //Toast.makeText(ctx,menuId, Toast.LENGTH_LONG).show();
+        }
+
+        Log.v("RAG", urlJSON);
+
+        try {
+            new loadDataInBackground().execute(new URL(urlJSON));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
+        return true;
+        //return super.onOptionsItemSelected(item);
+    }
 }

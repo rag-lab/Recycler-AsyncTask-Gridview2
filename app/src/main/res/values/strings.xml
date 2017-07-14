@@ -5,7 +5,7 @@
     <string name="base_url_poster">http://image.tmdb.org/t/p/w185//</string>
     <string name="base_url_popular">http://api.themoviedb.org/3/movie/popular?api_key=%1$s</string>
     <string name="base_url_toprated">http://api.themoviedb.org/3/movie/top_rated?api_key=%1$s</string>
-    <string name="APIKEY">8481813f6a52db086ab5d607c8c94667</string>
+    <string name="APIKEY">API</string>
     <string name="tag">rag</string>
 
 </resources>
