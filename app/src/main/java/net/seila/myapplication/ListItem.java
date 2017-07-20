@@ -11,16 +11,27 @@ public class ListItem {
     private String sinopse;
     private String duracao;
     private String ano;
+    private String rating;
 
-    public ListItem(String titulo, String urlCapa, String duracao, String ano, String sinopse) {
+
+    public ListItem(String titulo, String urlCapa, String duracao, String ano, String sinopse, String rating) {
         this.titulo = titulo;
         this.urlCapa = urlCapa;
         this.duracao = duracao;
         this.ano = ano;
         this.sinopse = sinopse;
+        this.rating = rating;
     }
-
-
+/*
+    public ListItem(String titulo, String urlCapa) {
+        this.titulo = titulo;
+        this.urlCapa = urlCapa;
+        this.duracao = duracao;
+        this.ano = ano;
+        this.sinopse = sinopse;
+        this.rating = rating;
+    }
+*/
     public String getSinopse() {
         return sinopse;
     }
@@ -55,6 +66,7 @@ public class ListItem {
         this.titulo = titulo;
     }
 
+
     public String getUrlCapa() {
         String param = "";
         return param + urlCapa;
@@ -64,4 +76,11 @@ public class ListItem {
         this.urlCapa = urlCapa;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 }

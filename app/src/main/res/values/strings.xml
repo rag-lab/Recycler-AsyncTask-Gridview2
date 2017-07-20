@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">My Application</string>
-
+    <string name="app_name">Popular Moives P1</string>
 
     <string name="base_url_poster">http://image.tmdb.org/t/p/w185//</string>
     <string name="base_url_popular">http://api.themoviedb.org/3/movie/popular?api_key=%1$s</string>
     <string name="base_url_toprated">http://api.themoviedb.org/3/movie/top_rated?api_key=%1$s</string>
-    <string name="APIKEY">API</string>
-    <string name="tag">rag</string>
+    <string name="APIKEY">KEY</string>
+    <string name="tag">RAG</string>
+    <string name="NOINTERNET">No internet connection, please check.</string>
 
 </resources>

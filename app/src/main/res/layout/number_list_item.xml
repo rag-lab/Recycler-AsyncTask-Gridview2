@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="320dp"
-    android:layout_margin="0dp">
+    android:layout_height="270dp">
 
     <!--
     <TextView
@@ -21,7 +20,6 @@
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         />
 
 </GridLayout>
